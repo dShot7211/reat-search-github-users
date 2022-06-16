@@ -32,7 +32,7 @@ const ChartComponent = ({ dataprop }) => {
       // https://www.fusioncharts.com/dev/chart-attributes/pie3d  see all the prop of charts here!!
       // Chart Configuration
       chart: {
-        caption: "Languages",
+        caption: "Stars Per Languages",
         decimals: 0, // remove decimals form the percents
         doughnutRadius: "45%", // for radius
         showPercentValues: 0,
