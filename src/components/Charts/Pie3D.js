@@ -36,6 +36,7 @@ const ChartComponent = ({ dataprop }) => {
         theme: "fusion",
         decimals: 0, // remove decimals form the percents
         pieRadius: "40%", // for radius
+        // paletteColors:
       },
       // Chart Data
       data: dataprop,

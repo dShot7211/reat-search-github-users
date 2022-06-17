@@ -5,6 +5,9 @@ import { Pie3D, Column3D, Bar3D, Doughnut2D } from "./Charts";
 const Repos = () => {
   const { repos } = React.useContext(GithubContext);
 
+  // ==========================================
+  //  just count the languages used in each project/ repos of a user on github & we get he stars count as wellfor each repo
+  // like how many repos have the js,css,html as language and how many stars are there on all these repos
   let languages = repos.reduce((total, eachLangauge) => {
     const { language, stargazers_count } = eachLangauge;
     if (!language) return total;
@@ -29,28 +32,32 @@ const Repos = () => {
     return total;
   }, {});
 
+  //=================================
+  //  it is the data for the first chart pie3d
   const mostUsed = Object.values(languages)
     .sort((a, b) => {
       return b.value - a.value;
     })
     .slice(0, 5);
 
-  // most stars per language
+  // most stars per language used in doughnut
   const mostPopular = Object.values(languages)
     .sort((a, b) => {
       return b.stars - a.stars; // this just returns the top value and then sec top and 3 top
     })
     .map((item) => {
       return { ...item, value: item.stars };
-    });
+    })
+    .slice(0, 5);
 
+  // ===============================
   // stars, forks
   // returning obj with stars and forks properties which are obj in themselves
   // see the vid 292 Q&A where the decending order of arrangement of values is explaine
   let { stars, forks } = repos.reduce(
     (total, item) => {
       const { stargazers_count, name, forks } = item;
-
+      // create a key/property of stargazers_count on the stars objk that is a key/prop of the total object
       total.stars[stargazers_count] = { label: name, value: stargazers_count };
       total.forks[forks] = { label: name, value: forks };
       return total;
